@@ -1,13 +1,12 @@
 package corentinf.testagregio.model.dto;
 
-import corentinf.testagregio.model.TypeParc;
+import corentinf.testagregio.model.TypeMarche;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,12 +14,16 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParcDto {
+public class OffreDto {
     @Id
     @GeneratedValue
-    private Long id;
+    private long Id;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<BlocHoraireDto> blocsHoraire = new ArrayList<>();
-    private TypeParc typeParc;
+    private List<BlocHoraireDto> blocsHoraire;
+    private int prixPlancher;
+    private TypeMarche typeMarche;
+
+    @OneToOne
+    private ParcDto parc;
 }

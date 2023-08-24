@@ -1,6 +1,6 @@
 package corentinf.testagregio.model.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +15,6 @@ import java.time.LocalDateTime;
 @Embeddable
 public class BlocHoraireDto {
     private LocalDateTime debut;
-    private int quantiteEnergie;
+    private int quantiteEnergieTotale;
+    private int quantiteEnergieAlouee;
 }

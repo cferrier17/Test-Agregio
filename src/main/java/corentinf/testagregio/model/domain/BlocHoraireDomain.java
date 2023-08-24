@@ -10,4 +10,5 @@ import java.time.LocalDateTime;
 public class BlocHoraireDomain {
     private LocalDateTime debut;
     private int quantiteEnergie;
+    private int quantiteEnergieAlouee;
 }
