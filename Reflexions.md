@@ -13,3 +13,4 @@ Ce document permet de lister mes réflexions quant aux flous du sujet ainsi que 
 - Remplacer l'id technique des parcs par un id fonctionnel
 - Unifier les modèles d'offre entre domain et dto ?
 - Doc Swagger
+- CI
