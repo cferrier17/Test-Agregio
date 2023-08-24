@@ -1,6 +1,6 @@
 package corentinf.testagregio.controller;
 
-import corentinf.testagregio.adapter.ParcDtoDomainAdapter;
+import corentinf.testagregio.adapter.ParcAdapter;
 import corentinf.testagregio.model.domain.ParcDomain;
 import corentinf.testagregio.service.ParcService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ParcController {
     private final ParcService parcService;
-    private final ParcDtoDomainAdapter parcAdapter;
+    private final ParcAdapter parcAdapter;
 
     @PostMapping
     public ResponseEntity<ParcDomain> saveParc(@RequestBody ParcDomain parcDomain) {

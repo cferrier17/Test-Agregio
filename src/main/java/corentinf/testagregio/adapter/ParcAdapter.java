@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ParcDtoDomainAdapter implements AbstractDtoDomainAdapter<ParcDto, ParcDomain> {
-    private final BlocHoraireDtoDomainAdapter blocHoraireAdapter;
+public class ParcAdapter implements AbstractDtoDomainAdapter<ParcDto, ParcDomain> {
+    private final BlocHoraireAdapter blocHoraireAdapter;
 
     @Override
     public ParcDto fromDomToDto(ParcDomain domain) {
         return ParcDto.builder()
                 .typeParc(domain.getTypeParc())
-                .blocHoraires(
-                        domain.getBlocHoraires()
+                .blocsHoraire(
+                        domain.getBlocsHoraire()
                                 .stream()
                                 .map(blocHoraireAdapter::fromDomToDto)
                                 .toList())
@@ -26,8 +26,8 @@ public class ParcDtoDomainAdapter implements AbstractDtoDomainAdapter<ParcDto, P
     public ParcDomain fromDtoToDom(ParcDto dto) {
         return ParcDomain.builder()
                 .typeParc(dto.getTypeParc())
-                .blocHoraires(
-                        dto.getBlocHoraires()
+                .blocsHoraire(
+                        dto.getBlocsHoraire()
                                 .stream()
                                 .map(blocHoraireAdapter::fromDtoToDom)
                                 .toList())

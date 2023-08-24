@@ -5,12 +5,12 @@ import corentinf.testagregio.model.dto.BlocHoraireDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BlocHoraireDtoDomainAdapter implements AbstractDtoDomainAdapter<BlocHoraireDto, BlocHoraireDomain> {
+public class BlocHoraireAdapter implements AbstractDtoDomainAdapter<BlocHoraireDto, BlocHoraireDomain> {
     @Override
     public BlocHoraireDto fromDomToDto(BlocHoraireDomain blocHoraireDomain) {
         return BlocHoraireDto.builder()
                 .debut(blocHoraireDomain.getDebut())
-                .quantiteEnergie(blocHoraireDomain.getQuantiteEnergie())
+                .quantiteEnergieTotale(blocHoraireDomain.getQuantiteEnergie())
                 .build();
     }
 
@@ -18,7 +18,7 @@ public class BlocHoraireDtoDomainAdapter implements AbstractDtoDomainAdapter<Blo
     public BlocHoraireDomain fromDtoToDom(BlocHoraireDto blocHoraireDto) {
         return BlocHoraireDomain.builder()
                 .debut(blocHoraireDto.getDebut())
-                .quantiteEnergie(blocHoraireDto.getQuantiteEnergie())
+                .quantiteEnergie(blocHoraireDto.getQuantiteEnergieTotale())
                 .build();
     }
 }
