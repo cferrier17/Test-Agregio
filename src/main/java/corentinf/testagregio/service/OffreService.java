@@ -3,12 +3,14 @@ package corentinf.testagregio.service;
 import corentinf.testagregio.client.MarcheClient;
 import corentinf.testagregio.model.TypeMarche;
 import corentinf.testagregio.model.dto.OffreDto;
+import corentinf.testagregio.model.dto.ParcDto;
 import corentinf.testagregio.repository.OffreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +40,8 @@ public class OffreService {
      * @return Optional(OffreDto) si l'offre est assumable, Optional.empty() sinon
      */
     private Optional<OffreDto> buildOffre(OffreDto offre) {
-        var parcDto = parcService.findAll().get(0);
+        var allParcs = parcService.findAll();
+        var parcDto = allParcs.get(ThreadLocalRandom.current().nextInt(0, allParcs.size()));
         offre.setParc(parcDto);
         return Optional.of(offre);
     }
@@ -52,6 +55,13 @@ public class OffreService {
         return offreRepository.findAll()
                 .stream()
                 .filter(offreDto -> offreDto.getTypeMarche().equals(typeMarche))
+                .toList();
+    }
+
+    public List<ParcDto> findAllParcsByMarket(TypeMarche typeMarche) {
+        return findAllByMarket(typeMarche)
+                .stream()
+                .map(OffreDto::getParc)
                 .toList();
     }
 }

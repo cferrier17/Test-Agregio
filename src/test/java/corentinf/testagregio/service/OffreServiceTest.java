@@ -101,4 +101,37 @@ class OffreServiceTest {
         assertEquals(offreByMarket.getTypeMarche(), TypeMarche.RESERVE_PRIMAIRE);
         assertEquals(offreByMarket.getPrixPlancher(), 5000);
     }
+
+    @Test
+    void findAllParcsByMarket() {
+        var parcDto1 = ParcDto.builder()
+                .typeParc(TypeParc.EOLIEN)
+                .blocsHoraire(Collections.singletonList(BlocHoraireDto.builder()
+                        .quantiteEnergieTotale(50)
+                        .debut(LocalDateTime.of(2023, 8, 20, 12, 0))
+                        .build()))
+                .build();
+
+        var parcDto2 = ParcDto.builder()
+                .typeParc(TypeParc.HYDROLIQUE)
+                .blocsHoraire(Collections.singletonList(BlocHoraireDto.builder()
+                        .quantiteEnergieTotale(100)
+                        .debut(LocalDateTime.of(2023, 8, 20, 12, 0))
+                        .build()))
+                .build();
+
+        parcService.saveParc(parcDto1);
+        parcService.saveParc(parcDto2);
+
+        var offreDto = OffreDto.builder()
+                .typeMarche(TypeMarche.RESERVE_PRIMAIRE)
+                .prixPlancher(5000)
+                .build();
+
+        offreService.saveOffre(offreDto);
+
+        var allParcsByMarket = offreService.findAllParcsByMarket(TypeMarche.RESERVE_PRIMAIRE);
+        assertEquals(allParcsByMarket.size(), 1);
+        assertEquals(allParcsByMarket.get(0).getTypeParc(), TypeParc.EOLIEN);
+    }
 }
