@@ -1,6 +1,7 @@
 package corentinf.testagregio.service;
 
 import corentinf.testagregio.client.MarcheClient;
+import corentinf.testagregio.model.TypeMarche;
 import corentinf.testagregio.model.dto.OffreDto;
 import corentinf.testagregio.repository.OffreRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,5 +45,13 @@ public class OffreService {
 
     public List<OffreDto> findAll() {
         return offreRepository.findAll();
+    }
+
+
+    public List<OffreDto> findAllByMarket(TypeMarche typeMarche) {
+        return offreRepository.findAll()
+                .stream()
+                .filter(offreDto -> offreDto.getTypeMarche().equals(typeMarche))
+                .toList();
     }
 }

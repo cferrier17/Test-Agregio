@@ -24,6 +24,6 @@ public class OffreDto {
     private int prixPlancher;
     private TypeMarche typeMarche;
 
-    @OneToOne
+    @ManyToOne
     private ParcDto parc;
 }
